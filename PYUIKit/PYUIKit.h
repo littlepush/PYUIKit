@@ -27,6 +27,22 @@
 
 #define USING_PYUIKIT__
 
+#import "UIColor+PYUIKit.h"
+#import "UIImage+UIKit.h"
+#import "UIScrollView+PYUIKit.h"
+#import "UIView+PYUIKit.h"
+#import "UIViewController+PopUp.h"
+
+#import "PYTableManagerProtocol.h"
+#import "PYTableCell.h"
+#import "UITableManager.h"
+
+#import "PYApperance.h"
+#import "PYNavigationController.h"
+#import "PYNavViewController.h"
+
+#import "PYRectangleCalc.h"
+#import "PYUIKitMacro.h"
 
 #endif
 
