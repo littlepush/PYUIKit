@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A4416FCDDB312C8B7DDCB656 /* libPods-PYUIKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DE8EDBD3A4A21CA6848CA9 /* libPods-PYUIKit.a */; };
+		E69B1EC417AA3E4F00158033 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6263FF115B4327100DCF831 /* ImageIO.framework */; };
+		E6D57F3E15F5A8C400C1ED25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6263F8515B42B1400DCF831 /* Foundation.framework */; };
+		E6E8B8681A77E9CB00FDF235 /* PYUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B8671A77E9CB00FDF235 /* PYUIKit.h */; };
+		E6E8B8801A77E9D500FDF235 /* UIColor+PYUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B86A1A77E9D500FDF235 /* UIColor+PYUIKit.h */; };
+		E6E8B8811A77E9D500FDF235 /* UIColor+PYUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E8B86B1A77E9D500FDF235 /* UIColor+PYUIKit.m */; };
+		E6E8B8821A77E9D500FDF235 /* UIImage+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B86C1A77E9D500FDF235 /* UIImage+UIKit.h */; };
+		E6E8B8831A77E9D500FDF235 /* UIImage+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E8B86D1A77E9D500FDF235 /* UIImage+UIKit.m */; };
+		E6E8B8841A77E9D500FDF235 /* UIScrollView+PYUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B86E1A77E9D500FDF235 /* UIScrollView+PYUIKit.h */; };
+		E6E8B8851A77E9D500FDF235 /* UIScrollView+PYUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E8B86F1A77E9D500FDF235 /* UIScrollView+PYUIKit.m */; };
+		E6E8B8861A77E9D500FDF235 /* UIView+PYUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B8701A77E9D500FDF235 /* UIView+PYUIKit.h */; };
+		E6E8B8871A77E9D500FDF235 /* UIView+PYUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E8B8711A77E9D500FDF235 /* UIView+PYUIKit.m */; };
+		E6E8B8881A77E9D500FDF235 /* UIViewController+PopUp.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B8721A77E9D500FDF235 /* UIViewController+PopUp.h */; };
+		E6E8B8891A77E9D500FDF235 /* UIViewController+PopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E8B8731A77E9D500FDF235 /* UIViewController+PopUp.m */; };
+		E6E8B88A1A77E9D500FDF235 /* PYTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B8751A77E9D500FDF235 /* PYTableCell.h */; };
+		E6E8B88B1A77E9D500FDF235 /* PYTableManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B8761A77E9D500FDF235 /* PYTableManagerProtocol.h */; };
+		E6E8B88C1A77E9D500FDF235 /* UITableManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B8771A77E9D500FDF235 /* UITableManager.h */; };
+		E6E8B88D1A77E9D500FDF235 /* UITableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E8B8781A77E9D500FDF235 /* UITableManager.m */; };
+		E6E8B88E1A77E9D500FDF235 /* PYApperance.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B87A1A77E9D500FDF235 /* PYApperance.h */; };
+		E6E8B88F1A77E9D500FDF235 /* PYApperance.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E8B87B1A77E9D500FDF235 /* PYApperance.m */; };
+		E6E8B8901A77E9D500FDF235 /* PYNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B87C1A77E9D500FDF235 /* PYNavigationController.h */; };
+		E6E8B8911A77E9D500FDF235 /* PYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E8B87D1A77E9D500FDF235 /* PYNavigationController.m */; };
+		E6E8B8921A77E9D500FDF235 /* PYNavViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B87E1A77E9D500FDF235 /* PYNavViewController.h */; };
+		E6E8B8931A77E9D500FDF235 /* PYNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E8B87F1A77E9D500FDF235 /* PYNavViewController.m */; };
+		E6E8B8971A77EA3700FDF235 /* PYRectangleCalc.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B8941A77EA3700FDF235 /* PYRectangleCalc.h */; };
+		E6E8B8981A77EA3700FDF235 /* PYRectangleCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E8B8951A77EA3700FDF235 /* PYRectangleCalc.m */; };
+		E6E8B8991A77EA3700FDF235 /* PYUIKitMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B8961A77EA3700FDF235 /* PYUIKitMacro.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		48EC829088739C4C191F14B4 /* Pods-PYUIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PYUIKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PYUIKit/Pods-PYUIKit.debug.xcconfig"; sourceTree = "<group>"; };
+		D2EE9764E8AF52E8BB7585FB /* Pods-PYUIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PYUIKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-PYUIKit/Pods-PYUIKit.release.xcconfig"; sourceTree = "<group>"; };
+		E6263F8315B42B1400DCF831 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E6263F8515B42B1400DCF831 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E6263F8715B42B1400DCF831 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E6263FED15B4326700DCF831 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		E6263FEF15B4326B00DCF831 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E6263FF115B4327100DCF831 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		E69B1EC217AA3E2100158033 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		E69B1EC517AA3E6E00158033 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		E6A3871315B5468D0096A14A /* PYCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PYCore.framework; path = System/Library/Frameworks/PYCore.framework; sourceTree = SDKROOT; };
+		E6D57F3D15F5A8C400C1ED25 /* libPYUIKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPYUIKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6D57F4115F5A8C400C1ED25 /* PYUIKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PYUIKit-Prefix.pch"; sourceTree = "<group>"; };
+		E6E8B8671A77E9CB00FDF235 /* PYUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYUIKit.h; sourceTree = "<group>"; };
+		E6E8B86A1A77E9D500FDF235 /* UIColor+PYUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PYUIKit.h"; sourceTree = "<group>"; };
+		E6E8B86B1A77E9D500FDF235 /* UIColor+PYUIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PYUIKit.m"; sourceTree = "<group>"; };
+		E6E8B86C1A77E9D500FDF235 /* UIImage+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+UIKit.h"; sourceTree = "<group>"; };
+		E6E8B86D1A77E9D500FDF235 /* UIImage+UIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UIKit.m"; sourceTree = "<group>"; };
+		E6E8B86E1A77E9D500FDF235 /* UIScrollView+PYUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+PYUIKit.h"; sourceTree = "<group>"; };
+		E6E8B86F1A77E9D500FDF235 /* UIScrollView+PYUIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+PYUIKit.m"; sourceTree = "<group>"; };
+		E6E8B8701A77E9D500FDF235 /* UIView+PYUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PYUIKit.h"; sourceTree = "<group>"; };
+		E6E8B8711A77E9D500FDF235 /* UIView+PYUIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PYUIKit.m"; sourceTree = "<group>"; };
+		E6E8B8721A77E9D500FDF235 /* UIViewController+PopUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PopUp.h"; sourceTree = "<group>"; };
+		E6E8B8731A77E9D500FDF235 /* UIViewController+PopUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PopUp.m"; sourceTree = "<group>"; };
+		E6E8B8751A77E9D500FDF235 /* PYTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYTableCell.h; sourceTree = "<group>"; };
+		E6E8B8761A77E9D500FDF235 /* PYTableManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYTableManagerProtocol.h; sourceTree = "<group>"; };
+		E6E8B8771A77E9D500FDF235 /* UITableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableManager.h; sourceTree = "<group>"; };
+		E6E8B8781A77E9D500FDF235 /* UITableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableManager.m; sourceTree = "<group>"; };
+		E6E8B87A1A77E9D500FDF235 /* PYApperance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYApperance.h; sourceTree = "<group>"; };
+		E6E8B87B1A77E9D500FDF235 /* PYApperance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYApperance.m; sourceTree = "<group>"; };
+		E6E8B87C1A77E9D500FDF235 /* PYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYNavigationController.h; sourceTree = "<group>"; };
+		E6E8B87D1A77E9D500FDF235 /* PYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYNavigationController.m; sourceTree = "<group>"; };
+		E6E8B87E1A77E9D500FDF235 /* PYNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYNavViewController.h; sourceTree = "<group>"; };
+		E6E8B87F1A77E9D500FDF235 /* PYNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYNavViewController.m; sourceTree = "<group>"; };
+		E6E8B8941A77EA3700FDF235 /* PYRectangleCalc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYRectangleCalc.h; sourceTree = "<group>"; };
+		E6E8B8951A77EA3700FDF235 /* PYRectangleCalc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYRectangleCalc.m; sourceTree = "<group>"; };
+		E6E8B8961A77EA3700FDF235 /* PYUIKitMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYUIKitMacro.h; sourceTree = "<group>"; };
+		F9DE8EDBD3A4A21CA6848CA9 /* libPods-PYUIKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PYUIKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E6D57F3A15F5A8C400C1ED25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E69B1EC417AA3E4F00158033 /* ImageIO.framework in Frameworks */,
+				E6D57F3E15F5A8C400C1ED25 /* Foundation.framework in Frameworks */,
+				A4416FCDDB312C8B7DDCB656 /* libPods-PYUIKit.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C0E9949A39A5AC7F3D1D5F91 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				48EC829088739C4C191F14B4 /* Pods-PYUIKit.debug.xcconfig */,
+				D2EE9764E8AF52E8BB7585FB /* Pods-PYUIKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E6263F7415B42B1400DCF831 = {
+			isa = PBXGroup;
+			children = (
+				E6D57F3F15F5A8C400C1ED25 /* PYUIKit */,
+				E6263F8215B42B1400DCF831 /* Frameworks */,
+				E6263F8015B42B1400DCF831 /* Products */,
+				C0E9949A39A5AC7F3D1D5F91 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		E6263F8015B42B1400DCF831 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E6D57F3D15F5A8C400C1ED25 /* libPYUIKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E6263F8215B42B1400DCF831 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E69B1EC517AA3E6E00158033 /* CoreImage.framework */,
+				E69B1EC217AA3E2100158033 /* OpenGLES.framework */,
+				E6A3871315B5468D0096A14A /* PYCore.framework */,
+				E6263FF115B4327100DCF831 /* ImageIO.framework */,
+				E6263FEF15B4326B00DCF831 /* QuartzCore.framework */,
+				E6263FED15B4326700DCF831 /* Accelerate.framework */,
+				E6263F8315B42B1400DCF831 /* UIKit.framework */,
+				E6263F8515B42B1400DCF831 /* Foundation.framework */,
+				E6263F8715B42B1400DCF831 /* CoreGraphics.framework */,
+				F9DE8EDBD3A4A21CA6848CA9 /* libPods-PYUIKit.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E6D57F3F15F5A8C400C1ED25 /* PYUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				E6E8B8691A77E9D500FDF235 /* Extends */,
+				E6E8B8741A77E9D500FDF235 /* Managers */,
+				E6E8B8791A77E9D500FDF235 /* UIFramework */,
+				E6E8B8671A77E9CB00FDF235 /* PYUIKit.h */,
+				E6E8B8941A77EA3700FDF235 /* PYRectangleCalc.h */,
+				E6E8B8951A77EA3700FDF235 /* PYRectangleCalc.m */,
+				E6E8B8961A77EA3700FDF235 /* PYUIKitMacro.h */,
+				E6D57F4015F5A8C400C1ED25 /* Supporting Files */,
+			);
+			path = PYUIKit;
+			sourceTree = "<group>";
+		};
+		E6D57F4015F5A8C400C1ED25 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E6D57F4115F5A8C400C1ED25 /* PYUIKit-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E6E8B8691A77E9D500FDF235 /* Extends */ = {
+			isa = PBXGroup;
+			children = (
+				E6E8B86A1A77E9D500FDF235 /* UIColor+PYUIKit.h */,
+				E6E8B86B1A77E9D500FDF235 /* UIColor+PYUIKit.m */,
+				E6E8B86C1A77E9D500FDF235 /* UIImage+UIKit.h */,
+				E6E8B86D1A77E9D500FDF235 /* UIImage+UIKit.m */,
+				E6E8B86E1A77E9D500FDF235 /* UIScrollView+PYUIKit.h */,
+				E6E8B86F1A77E9D500FDF235 /* UIScrollView+PYUIKit.m */,
+				E6E8B8701A77E9D500FDF235 /* UIView+PYUIKit.h */,
+				E6E8B8711A77E9D500FDF235 /* UIView+PYUIKit.m */,
+				E6E8B8721A77E9D500FDF235 /* UIViewController+PopUp.h */,
+				E6E8B8731A77E9D500FDF235 /* UIViewController+PopUp.m */,
+			);
+			path = Extends;
+			sourceTree = "<group>";
+		};
+		E6E8B8741A77E9D500FDF235 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E6E8B8751A77E9D500FDF235 /* PYTableCell.h */,
+				E6E8B8761A77E9D500FDF235 /* PYTableManagerProtocol.h */,
+				E6E8B8771A77E9D500FDF235 /* UITableManager.h */,
+				E6E8B8781A77E9D500FDF235 /* UITableManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		E6E8B8791A77E9D500FDF235 /* UIFramework */ = {
+			isa = PBXGroup;
+			children = (
+				E6E8B87A1A77E9D500FDF235 /* PYApperance.h */,
+				E6E8B87B1A77E9D500FDF235 /* PYApperance.m */,
+				E6E8B87C1A77E9D500FDF235 /* PYNavigationController.h */,
+				E6E8B87D1A77E9D500FDF235 /* PYNavigationController.m */,
+				E6E8B87E1A77E9D500FDF235 /* PYNavViewController.h */,
+				E6E8B87F1A77E9D500FDF235 /* PYNavViewController.m */,
+			);
+			path = UIFramework;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E6D57F3B15F5A8C400C1ED25 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6E8B8881A77E9D500FDF235 /* UIViewController+PopUp.h in Headers */,
+				E6E8B8821A77E9D500FDF235 /* UIImage+UIKit.h in Headers */,
+				E6E8B8801A77E9D500FDF235 /* UIColor+PYUIKit.h in Headers */,
+				E6E8B88A1A77E9D500FDF235 /* PYTableCell.h in Headers */,
+				E6E8B88C1A77E9D500FDF235 /* UITableManager.h in Headers */,
+				E6E8B88B1A77E9D500FDF235 /* PYTableManagerProtocol.h in Headers */,
+				E6E8B8861A77E9D500FDF235 /* UIView+PYUIKit.h in Headers */,
+				E6E8B8971A77EA3700FDF235 /* PYRectangleCalc.h in Headers */,
+				E6E8B8901A77E9D500FDF235 /* PYNavigationController.h in Headers */,
+				E6E8B8921A77E9D500FDF235 /* PYNavViewController.h in Headers */,
+				E6E8B8841A77E9D500FDF235 /* UIScrollView+PYUIKit.h in Headers */,
+				E6E8B8991A77EA3700FDF235 /* PYUIKitMacro.h in Headers */,
+				E6E8B8681A77E9CB00FDF235 /* PYUIKit.h in Headers */,
+				E6E8B88E1A77E9D500FDF235 /* PYApperance.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E6D57F3C15F5A8C400C1ED25 /* PYUIKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6D57F4515F5A8C400C1ED25 /* Build configuration list for PBXNativeTarget "PYUIKit" */;
+			buildPhases = (
+				98704026341A171C65DE6C7E /* Check Pods Manifest.lock */,
+				E6D57F3915F5A8C400C1ED25 /* Sources */,
+				E6D57F3A15F5A8C400C1ED25 /* Frameworks */,
+				E6D57F3B15F5A8C400C1ED25 /* Headers */,
+				5B2A0316464B7E622C01FC66 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PYUIKit;
+			productName = PYUIKit;
+			productReference = E6D57F3D15F5A8C400C1ED25 /* libPYUIKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E6263F7615B42B1400DCF831 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PY;
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Push Lab";
+			};
+			buildConfigurationList = E6263F7915B42B1400DCF831 /* Build configuration list for PBXProject "PYUIKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E6263F7415B42B1400DCF831;
+			productRefGroup = E6263F8015B42B1400DCF831 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E6D57F3C15F5A8C400C1ED25 /* PYUIKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5B2A0316464B7E622C01FC66 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PYUIKit/Pods-PYUIKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98704026341A171C65DE6C7E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E6D57F3915F5A8C400C1ED25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6E8B8911A77E9D500FDF235 /* PYNavigationController.m in Sources */,
+				E6E8B8981A77EA3700FDF235 /* PYRectangleCalc.m in Sources */,
+				E6E8B8831A77E9D500FDF235 /* UIImage+UIKit.m in Sources */,
+				E6E8B88F1A77E9D500FDF235 /* PYApperance.m in Sources */,
+				E6E8B8891A77E9D500FDF235 /* UIViewController+PopUp.m in Sources */,
+				E6E8B88D1A77E9D500FDF235 /* UITableManager.m in Sources */,
+				E6E8B8931A77E9D500FDF235 /* PYNavViewController.m in Sources */,
+				E6E8B8851A77E9D500FDF235 /* UIScrollView+PYUIKit.m in Sources */,
+				E6E8B8871A77E9D500FDF235 /* UIView+PYUIKit.m in Sources */,
+				E6E8B8811A77E9D500FDF235 /* UIColor+PYUIKit.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E6263F9E15B42B1400DCF831 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E6263F9F15B42B1400DCF831 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E6D57F4615F5A8C400C1ED25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48EC829088739C4C191F14B4 /* Pods-PYUIKit.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/PYUIKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PYUIKit/PYUIKit-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s i386 arm64";
+			};
+			name = Debug;
+		};
+		E6D57F4715F5A8C400C1ED25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2EE9764E8AF52E8BB7585FB /* Pods-PYUIKit.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/PYUIKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PYUIKit/PYUIKit-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s i386 arm64";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E6263F7915B42B1400DCF831 /* Build configuration list for PBXProject "PYUIKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6263F9E15B42B1400DCF831 /* Debug */,
+				E6263F9F15B42B1400DCF831 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6D57F4515F5A8C400C1ED25 /* Build configuration list for PBXNativeTarget "PYUIKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6D57F4615F5A8C400C1ED25 /* Debug */,
+				E6D57F4715F5A8C400C1ED25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E6263F7615B42B1400DCF831 /* Project object */;
+}
