@@ -509,7 +509,9 @@ withMultipleSectionDataSource:(NSArray *)datasource
     if ( _result == nil ) {
         //_result =
         Class _cc = [self classOfCellAtIndex:indexPath];
-        if ( [_cc respondsToSelector:@selector(heightOfCellWithSpecifiedContentItem:)] ) {
+        if ( [_cc respondsToSelector:@selector(heightOfCellWithSpecifiedContentItem:forSpecifiedList:)] ) {
+            _result = [_cc heightOfCellWithSpecifiedContentItem:_item forSpecifiedList:self.identify];
+        } else if ( [_cc respondsToSelector:@selector(heightOfCellWithSpecifiedContentItem:)] ) {
             _result = [_cc heightOfCellWithSpecifiedContentItem:_item];
         }
     }
@@ -555,7 +557,13 @@ withMultipleSectionDataSource:(NSArray *)datasource
 forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id _item = [self dataItemAtIndexPath:indexPath];
-    [cell tryPerformSelector:@selector(rendCellWithSpecifiedContentItem:) withObject:_item];
+    if ( [cell respondsToSelector:@selector(rendCellWithSpecifiedContentItem:forSpecifiedList:)] ) {
+        [cell tryPerformSelector:@selector(rendCellWithSpecifiedContentItem:forSpecifiedList:)
+                      withObject:_item
+                      withObject:self.identify];
+    } else {
+        [cell tryPerformSelector:@selector(rendCellWithSpecifiedContentItem:) withObject:_item];
+    }
     [self invokeTargetWithEvent:PYTableManagerEventWillDisplayCell
                          exInfo:cell
                          exInfo:indexPath];

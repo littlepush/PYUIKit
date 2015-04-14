@@ -24,7 +24,6 @@
 		E6E8B88A1A77E9D500FDF235 /* PYTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B8751A77E9D500FDF235 /* PYTableCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E6E8B88B1A77E9D500FDF235 /* PYTableManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B8761A77E9D500FDF235 /* PYTableManagerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E6E8B88C1A77E9D500FDF235 /* UITableManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B8771A77E9D500FDF235 /* UITableManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E6E8B88D1A77E9D500FDF235 /* UITableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E8B8781A77E9D500FDF235 /* UITableManager.m */; };
 		E6E8B88E1A77E9D500FDF235 /* PYApperance.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B87A1A77E9D500FDF235 /* PYApperance.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E6E8B88F1A77E9D500FDF235 /* PYApperance.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E8B87B1A77E9D500FDF235 /* PYApperance.m */; };
 		E6E8B8901A77E9D500FDF235 /* PYNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = E6E8B87C1A77E9D500FDF235 /* PYNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -315,7 +314,6 @@
 				E6E8B8831A77E9D500FDF235 /* UIImage+UIKit.m in Sources */,
 				E6E8B88F1A77E9D500FDF235 /* PYApperance.m in Sources */,
 				E6E8B8891A77E9D500FDF235 /* UIViewController+PopUp.m in Sources */,
-				E6E8B88D1A77E9D500FDF235 /* UITableManager.m in Sources */,
 				E6E8B8931A77E9D500FDF235 /* PYNavViewController.m in Sources */,
 				E6E8B8851A77E9D500FDF235 /* UIScrollView+PYUIKit.m in Sources */,
 				E6E8B8871A77E9D500FDF235 /* UIView+PYUIKit.m in Sources */,

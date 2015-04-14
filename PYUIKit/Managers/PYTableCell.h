@@ -54,6 +54,13 @@
 - (void)rendCellWithSpecifiedContentItem:(id)contentItem;
 
 @optional
+
+// Calculate the height of a cell in specified list
++ (NSNumber *)heightOfCellWithSpecifiedContentItem:(id)contentItem forSpecifiedList:(NSString *)identifier;
+
+// Rend the cel with content and list identifier
+- (void)rendCellWithSpecifiedContentItem:(id)contentItem forSpecifiedList:(NSString *)identifier;
+
 // When the cell want to delete itself, the container should
 // suppor this delete event to modify the content datasource.
 @property (nonatomic, copy, setter = setDeleteEventCallback:)   PYTableManagerCellEvent deleteEvent;
