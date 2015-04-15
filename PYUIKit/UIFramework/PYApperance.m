@@ -152,6 +152,16 @@ PYSingletonDefaultImplementation;
         _rightMenuDisplayWidth = width;
     }
 }
+@synthesize maxMaskAlphaRate = _maxMaskAlphaRate;
+- (void)setMaxMaskAlphaRate:(CGFloat)maxMaskAlphaRate
+{
+    @synchronized( self ) {
+        for ( PYNavigationController *_mv in _mainViewControllers ) {
+            [_mv setMaxMaskAlphaRate:maxMaskAlphaRate];
+        }
+        _maxMaskAlphaRate = maxMaskAlphaRate;
+    }
+}
 
 // The global loading method
 - (void)loadUIFrameworkWithMainView:(NSArray *)mainViews

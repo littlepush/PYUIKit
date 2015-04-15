@@ -104,6 +104,9 @@ typedef NS_OPTIONS(NSUInteger, UINavigationControllerType) {
 @property (nonatomic, assign)   CGFloat                     maxToLeftMovingSpace;
 @property (nonatomic, assign)   CGFloat                     maxToRightMovingSpace;
 
+// Max Mask Alpha Value when slide to menu, between 0 - 1;
+@property (nonatomic, assign)   CGFloat                     maxMaskAlphaRate;
+
 // Pop Navigation Controller Properties
 @property (nonatomic, readonly) BOOL                        isPopedUp;
 

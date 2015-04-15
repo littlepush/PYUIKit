@@ -57,6 +57,7 @@
     // The display range of menus.
     CGFloat                     _leftMenuDisplayWidth;
     CGFloat                     _rightMenuDisplayWidth;
+    CGFloat                     _maxMaskAlphaRate;
     PYNavigationController      *_popedController;
 }
 
@@ -66,6 +67,7 @@
 // The display range.
 @property (nonatomic, assign)   CGFloat     leftMenuDisplayWidth;
 @property (nonatomic, assign)   CGFloat     rightMenuDisplayWidth;
+@property (nonatomic, assign)   CGFloat     maxMaskAlphaRate;
 
 @property (nonatomic, readonly) NSArray     *leftMenus;
 @property (nonatomic, readonly) NSArray     *rightMenus;

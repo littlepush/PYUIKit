@@ -187,7 +187,7 @@
         } else {
             _percentage = PYABSF(_currentTransform) / _maxToLeftMovingSpace;
         }
-        CGFloat _alpha = _percentage * 0.6;
+        CGFloat _alpha = _percentage * self.maxMaskAlphaRate;
         [_maskView setAlpha:_alpha];
     }
 
@@ -225,7 +225,7 @@
         } else {
             _percentage = _currentTransform / _maxToRightMovingSpace;
         }
-        CGFloat _alpha = _percentage * 0.6;
+        CGFloat _alpha = _percentage * self.maxMaskAlphaRate;
         [_maskView setAlpha:_alpha];
     }
 
@@ -253,6 +253,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.maxMaskAlphaRate = 0.6;
     }
     return self;
 }
