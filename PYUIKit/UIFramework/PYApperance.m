@@ -99,6 +99,7 @@ PYSingletonDefaultImplementation;
         
         _leftMenuDisplayWidth = 0.f;
         _rightMenuDisplayWidth = 0.f;
+        _maxMaskAlphaRate = 0.6;
         
         _topNavIndex = 0;
     }
@@ -211,6 +212,7 @@ PYSingletonDefaultImplementation;
             [_nc setViewControllerType:UINavigationControllerTypeMainView];
             [_nc setMaxToLeftMovingSpace:_rightMenuDisplayWidth];
             [_nc setMaxToRightMovingSpace:_leftMenuDisplayWidth];
+            [_nc setMaxMaskAlphaRate:_maxMaskAlphaRate];
             
             [_nc.view.layer setShadowRadius:2.f];
             [_nc.view.layer setShadowOffset:CGSizeMake(0, 0)];
