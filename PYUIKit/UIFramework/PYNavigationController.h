@@ -41,6 +41,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "PYCore.h"
 
 typedef NS_OPTIONS(NSUInteger, UINavigationControllerType) {
     UINavigationControllerTypeMainView      = 0,
@@ -133,7 +134,11 @@ typedef NS_OPTIONS(NSUInteger, UINavigationControllerType) {
 - (void)moveToRightWithDistance:(CGFloat)distance animated:(BOOL)animated;
 
 // Reset current view's state
-- (void)resetViewPosition;
+- (void)resetViewPosition:(PYActionDone)done;
+
+// Swith
+- (void)willBeSwitchedToFront;
+- (void)didBeSwitchedToFront;
 
 // Content Size
 @property (nonatomic, readonly) CGRect                      contentFrame;
@@ -146,6 +151,10 @@ typedef NS_OPTIONS(NSUInteger, UINavigationControllerType) {
 
 // The content size did changed.
 - (void)contentSizeDidChanged;
+
+// Swith
+- (void)willBeSwitchedToFront;
+- (void)didBeSwitchedToFront;
 
 @end
 

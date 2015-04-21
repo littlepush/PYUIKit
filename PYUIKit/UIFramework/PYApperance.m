@@ -115,15 +115,18 @@ PYSingletonDefaultImplementation;
 
 - (void)switchMainViewAtIndex:(NSUInteger)index
 {
-    PYNavigationController *_nav = [_mainViewControllers safeObjectAtIndex:index];
+    __weak PYNavigationController *_nav = [_mainViewControllers safeObjectAtIndex:index];
     if ( _nav == nil ) return;
     
     // Already the top one
     if ( [_rootContainer.view.subviews lastObject] == _nav.view ) return;
+    [_nav willBeSwitchedToFront];
     [_rootContainer.view bringSubviewToFront:_nav.view];
     [[_nav topViewController] viewWillAppear:NO];
     //[_nav viewWillAppear:NO];
-    [_nav resetViewPosition];
+    [_nav resetViewPosition:^{
+        [_nav didBeSwitchedToFront];
+    }];
     _topNavIndex = index;
 }
 

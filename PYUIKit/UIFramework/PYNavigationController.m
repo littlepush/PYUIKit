@@ -43,6 +43,7 @@
 #import "PYNavigationController.h"
 #import "PYApperance.h"
 #import "UIView+PYUIKit.h"
+#import "UIViewController+PopUp.h"
 
 
 @interface PYNavigationController ()
@@ -234,7 +235,7 @@
     }
 }
 
-- (void)resetViewPosition
+- (void)resetViewPosition:(PYActionDone)done
 {
     if ( self.view.transform.tx == 0.f && _maskView.alpha == 0.f ) return;
     [UIView animateWithDuration:.175 animations:^{
@@ -245,6 +246,7 @@
         [_maskView setAlpha:0.f];
     } completion:^(BOOL finished) {
         [_maskView removeFromSuperview];
+        if ( done ) done();
     }];
 }
 
@@ -475,7 +477,7 @@
 
 - (void)_actionMaskViewTapHandler:(id)sender
 {
-    [self resetViewPosition];
+    [self resetViewPosition:nil];
 }
 
 - (void)_actionMaskViewPanHandler:(id)sender
@@ -541,8 +543,35 @@
 // When push viewcontroller, reset view position first.
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    [self resetViewPosition];
+    [self resetViewPosition:nil];
     [super pushViewController:viewController animated:animated];
+}
+
+- (void)willBeSwitchedToFront
+{
+    [self.visibleViewController willBeSwitchedToFront];
+}
+
+- (void)didBeSwitchedToFront
+{
+    [self.visibleViewController didBeSwitchedToFront];
+}
+
+- (void)willPopViewController:(UIViewController *)controller
+{
+    [self.visibleViewController willPopViewController:controller];
+}
+- (void)didPoppedViewController:(UIViewController *)controller
+{
+    [self.visibleViewController didPoppedViewController:controller];
+}
+- (void)willDismissPopViewController:(UIViewController *)controller
+{
+    [self.visibleViewController willDismissPopViewController:controller];
+}
+- (void)didDismissedPopViewController:(UIViewController *)controller
+{
+    [self.visibleViewController didDismissedPopViewController:controller];
 }
 
 @end
@@ -552,6 +581,16 @@
 - (void)contentSizeDidChanged
 {
     // When the bottom bar show/hide, this method will be invoked.
+}
+
+- (void)willBeSwitchedToFront
+{
+    // Override if need
+}
+
+- (void)didBeSwitchedToFront
+{
+    // Override if need
 }
 
 @end
