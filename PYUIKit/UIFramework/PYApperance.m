@@ -113,6 +113,17 @@ PYSingletonDefaultImplementation;
     }
 }
 
+- (void)_didSwitchedMainViewToIndex:(NSUInteger)index
+{
+    PYNavigationController *_nav = [_mainViewControllers safeObjectAtIndex:index];
+    for ( PYNavigationController *_mv in _mainViewControllers ) {
+        if ( _mv == _nav ) {
+            [_mv didBeSwitchedToFront];
+        } else {
+            [_mv didBeSwitchedToBackground];
+        }
+    }
+}
 - (void)switchMainViewAtIndex:(NSUInteger)index
 {
     __weak PYNavigationController *_nav = [_mainViewControllers safeObjectAtIndex:index];
@@ -120,12 +131,19 @@ PYSingletonDefaultImplementation;
     
     // Already the top one
     if ( [_rootContainer.view.subviews lastObject] == _nav.view ) return;
-    [_nav willBeSwitchedToFront];
+    for ( PYNavigationController *_mv in _mainViewControllers ) {
+        if ( _mv == _nav ) {
+            [_mv willBeSwitchedToFront];
+        } else {
+            [_mv willBeSwitchedToBackground];
+        }
+    }
     [_rootContainer.view bringSubviewToFront:_nav.view];
     [[_nav topViewController] viewWillAppear:NO];
     //[_nav viewWillAppear:NO];
     [_nav resetViewPosition:^{
-        [_nav didBeSwitchedToFront];
+        //[_nav didBeSwitchedToFront];
+        [[PYApperance sharedApperance] _didSwitchedMainViewToIndex:index];
     }];
     _topNavIndex = index;
 }

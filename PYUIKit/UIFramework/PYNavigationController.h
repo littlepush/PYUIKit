@@ -139,6 +139,8 @@ typedef NS_OPTIONS(NSUInteger, UINavigationControllerType) {
 // Swith
 - (void)willBeSwitchedToFront;
 - (void)didBeSwitchedToFront;
+- (void)willBeSwitchedToBackground;
+- (void)didBeSwitchedToBackground;
 
 // Content Size
 @property (nonatomic, readonly) CGRect                      contentFrame;
@@ -155,6 +157,8 @@ typedef NS_OPTIONS(NSUInteger, UINavigationControllerType) {
 // Swith
 - (void)willBeSwitchedToFront;
 - (void)didBeSwitchedToFront;
+- (void)willBeSwitchedToBackground;
+- (void)didBeSwitchedToBackground;
 
 @end
 

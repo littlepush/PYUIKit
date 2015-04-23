@@ -557,6 +557,15 @@
     [self.visibleViewController didBeSwitchedToFront];
 }
 
+- (void)willBeSwitchedToBackground
+{
+    [self.visibleViewController willBeSwitchedToBackground];
+}
+- (void)didBeSwitchedToBackground
+{
+    [self.visibleViewController didBeSwitchedToBackground];
+}
+
 - (void)willPopViewController:(UIViewController *)controller
 {
     [self.visibleViewController willPopViewController:controller];
@@ -592,6 +601,17 @@
 {
     // Override if need
 }
+
+- (void)willBeSwitchedToBackground
+{
+    // Override if need
+}
+
+- (void)didBeSwitchedToBackground
+{
+    // Override if need
+}
+
 
 @end
 
