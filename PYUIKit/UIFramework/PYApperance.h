@@ -58,7 +58,6 @@
     CGFloat                     _leftMenuDisplayWidth;
     CGFloat                     _rightMenuDisplayWidth;
     CGFloat                     _maxMaskAlphaRate;
-    PYNavigationController      *_popedController;
 }
 
 // Singleton instance.
@@ -98,20 +97,28 @@
 
 // Present pop view controller.
 - (void)presentPopViewController:(UIViewController *)viewController
-                       animation:(PYPopUpAnimationType)type
+                         options:(NSDictionary *)options
+                        complete:(PYActionDone)complete;
+- (void)presentPopViewController:(UIViewController *)viewController
+                        duration:(float)duration
+                       animation:(NSString *)type
                           center:(CGPoint)center
                         complete:(PYActionDone)complete;
 - (void)presentPopViewController:(UIViewController *)viewController
-                        complete:(PYActionDone)complete;
+                       animation:(NSString *)type
+                        duration:(float)duration;
 - (void)presentPopViewController:(UIViewController *)viewController
-                       animation:(PYPopUpAnimationType)type;
-- (void)presentPopViewController:(UIViewController *)viewController;
+                       animation:(NSString *)type;
 
 // Dismiss the poped view controller.
-- (void)dismissPopedViewControllerWithAnimationType:(PYPopUpAnimationType)type
+- (void)dismissPoppedViewControllerWithAnimationType:(NSString *)type
+                                            duration:(float)duration
+                                            complete:(PYActionDone)complete;
+- (void)dismissPoppedViewControllerWithAnimationType:(NSString *)type
                                            complete:(PYActionDone)complete;
-- (void)dismissPopedViewControllerWithAnimationType:(PYPopUpAnimationType)type;
-- (void)dismissPopedViewController;
+- (void)dismissPoppedViewControllerWithAnimationType:(NSString *)type;
+- (void)dismissLastPoppedViewController;
+- (void)dismissAllPoppedViewControllers;
 
 @end
 

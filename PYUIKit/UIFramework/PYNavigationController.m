@@ -127,7 +127,7 @@
 }
 
 // Pop statue.
-@synthesize isPopedUp = _isPopedUp;
+@synthesize isPoppedUp = _isPoppedUp;
 
 - (void)mainViewIsMovingToLeftWithPercentage:(CGFloat)percentage
 {

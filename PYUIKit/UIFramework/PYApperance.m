@@ -42,16 +42,14 @@
 
 #import "PYApperance.h"
 
-NSString *const         kUIViewControllerPopState       = @"popState";
-
 @interface PYNavigationController (Apperance)
 // Poped state.
-- (void)setPopedUpState:(BOOL)popedUp;
+- (void)setPoppedUpState:(BOOL)poppedUp;
 @end
 @implementation PYNavigationController (Apperance)
-- (void)setPopedUpState:(BOOL)popedUp
+- (void)setPoppedUpState:(BOOL)poppedUp
 {
-    _isPopedUp = popedUp;
+    _isPoppedUp = poppedUp;
 }
 @end
 
@@ -104,13 +102,6 @@ PYSingletonDefaultImplementation;
         _topNavIndex = 0;
     }
     return self;
-}
-
-- (void)dealloc
-{
-    if ( !_rootContainer ) {
-        PYRemoveObserve(_rootContainer, kUIViewControllerPopState);
-    }
 }
 
 - (void)_didSwitchedMainViewToIndex:(NSUInteger)index
@@ -193,11 +184,7 @@ PYSingletonDefaultImplementation;
 {
     @synchronized( self ) {
         PYASSERT(rootContainer != nil, @"root container cannot be nil");
-        if ( _rootContainer != nil ) {
-            PYRemoveObserve(_rootContainer, kUIViewControllerPopState);
-        }
         _rootContainer = rootContainer;
-        PYObserve(_rootContainer, kUIViewControllerPopState);
         for ( UIViewController *_uc in leftMenus ) {
             Class _navClass = [rootContainer navigationControllerClassForLeftViewController:_uc];
             PYNavigationController *_nc = [[_navClass alloc] initWithRootViewController:_uc];
@@ -285,8 +272,9 @@ PYSingletonDefaultImplementation;
 - (UIViewController *)visiableController
 {
     @synchronized( self ) {
-        if ( _popedController != nil ) {
-            return [_popedController visibleViewController];
+        PYNavigationController *_topPoppedVC = (PYNavigationController *)_rootContainer.poppedViewController;
+        if ( _topPoppedVC != nil ) {
+            return [_topPoppedVC visibleViewController];
         }
         if ( [_mainViewControllers count] == 0 ) return nil;
         PYNavigationController *_mainNC = [_mainViewControllers safeObjectAtIndex:_topNavIndex];
@@ -296,83 +284,78 @@ PYSingletonDefaultImplementation;
 
 // Present pop view controller.
 - (void)presentPopViewController:(UIViewController *)viewController
-                       animation:(PYPopUpAnimationType)type
+                         options:(NSDictionary *)options
+                        complete:(PYActionDone)complete
+{
+    Class _navClass = [_rootContainer navigationControllerClassForPopViewController:viewController];
+    PYNavigationController *_nc = [[_navClass alloc] initWithRootViewController:viewController];
+    if ( [_nc isKindOfClass:[PYNavigationController class]] == NO ) {
+        ALog(@"The navigation controller for pop is not a PYNavigationController.");
+        return;
+    }
+    [_rootContainer presentPopViewController:_nc wihtOptions:options complete:^{
+        [_nc setPoppedUpState:YES];
+        if ( complete ) complete();
+    }];
+}
+- (void)presentPopViewController:(UIViewController *)viewController
+                        duration:(float)duration
+                       animation:(NSString *)type
                           center:(CGPoint)center
                         complete:(PYActionDone)complete
 {
-    @synchronized ( self  ) {
-        if ( _popedController != nil ) return;
-        //CGRect _bouds = viewController.view.bounds;
-        Class _navClass = [_rootContainer navigationControllerClassForPopViewController:viewController];
-        PYNavigationController *_nc = [[_navClass alloc] initWithRootViewController:viewController];
-        if ( [_nc isKindOfClass:[PYNavigationController class]] == NO ) {
-            ALog(@"The navigation controller for pop is not a PYNavigationController.");
-            return;
-        }
-        //[_nc.view setFrame:_bouds];
-        _popedController = _nc;
-        [_rootContainer presentPopViewController:_nc animation:type center:center complete:^{
-            if ( complete ) complete();
-        }];
-    }
-}
-- (void)presentPopViewController:(UIViewController *)viewController
-                        complete:(PYActionDone)complete
-{
-    CGPoint _center = CGPointMake(_rootContainer.view.bounds.size.width / 2,
-                                  _rootContainer.view.bounds.size.height / 2);
     [self presentPopViewController:viewController
-                         animation:PYPopUpAnimationTypeSlideFromRight
-                            center:_center
+                           options:@{
+                                     kViewControllerPopUpOptionAnimationType:type,
+                                     kViewControllerPopUpOptionDuration:@(duration),
+                                     kViewControllerPopUpOptionCenterPoint:[NSValue valueWithCGPoint:center]
+                                     }
                           complete:complete];
 }
 - (void)presentPopViewController:(UIViewController *)viewController
-                       animation:(PYPopUpAnimationType)type
+                       animation:(NSString *)type
+                        duration:(float)duration
 {
-    CGPoint _center = CGPointMake(_rootContainer.view.bounds.size.width / 2,
-                                  _rootContainer.view.bounds.size.height / 2);
     [self presentPopViewController:viewController
-                         animation:type
-                            center:_center
+                           options:@{
+                                     kViewControllerPopUpOptionAnimationType:type,
+                                     kViewControllerPopUpOptionDuration:@(duration)
+                                     }
                           complete:nil];
 }
 - (void)presentPopViewController:(UIViewController *)viewController
+                       animation:(NSString *)type
 {
-    CGPoint _center = CGPointMake(_rootContainer.view.bounds.size.width / 2,
-                                  _rootContainer.view.bounds.size.height / 2);
     [self presentPopViewController:viewController
-                         animation:PYPopUpAnimationTypeSlideFromRight
-                            center:_center
+                           options:@{kViewControllerPopUpOptionAnimationType:type}
                           complete:nil];
 }
-- (void)dismissPopedViewControllerWithAnimationType:(PYPopUpAnimationType)type
-                                           complete:(PYActionDone)complete
-{
-    if ( _popedController == nil ) return;
-    [_popedController dismissPoppedViewControllerAnimation:type complete:complete];
-}
-- (void)dismissPopedViewControllerWithAnimationType:(PYPopUpAnimationType)type
-{
-    [self dismissPopedViewControllerWithAnimationType:type complete:nil];
-}
-- (void)dismissPopedViewController
-{
-    [self dismissPopedViewControllerWithAnimationType:PYPopUpAnimationTypeSlideFromLeft
-                                             complete:nil];
-}
 
-PYKVO_CHANGED_RESPONSE(_rootContainer, popState)
+// Dismiss the poped view controller.
+- (void)dismissPoppedViewControllerWithAnimationType:(NSString *)type
+                                            duration:(float)duration
+                                            complete:(PYActionDone)complete
 {
-    NSInteger _newState = [newValue integerValue];
-    if ( _popedController == nil ) return;
-    if ( _newState == UIViewControllerPopStatePoppedUp ) {
-        [_popedController setPopedUpState:YES];
-    }
-    if ( _newState == UIViewControllerPopStateDismissed ) {
-        [_popedController setPopedUpState:NO];
-        [_popedController popToRootViewControllerAnimated:NO];
-        _popedController = nil;
-    }
+    PYNavigationController *_nc = (PYNavigationController *)_rootContainer.popoverPresentationController;
+    if ( _nc == nil ) return;
+    [_nc dismissSelfWithAnimation:type duration:duration complete:complete];
+}
+- (void)dismissPoppedViewControllerWithAnimationType:(NSString *)type
+                                            complete:(PYActionDone)complete
+{
+    [self dismissPoppedViewControllerWithAnimationType:type duration:0 complete:complete];
+}
+- (void)dismissPoppedViewControllerWithAnimationType:(NSString *)type
+{
+    [self dismissPoppedViewControllerWithAnimationType:type duration:0 complete:nil];
+}
+- (void)dismissLastPoppedViewController
+{
+    [self dismissPoppedViewControllerWithAnimationType:nil duration:0 complete:nil];
+}
+- (void)dismissAllPoppedViewControllers
+{
+    [_rootContainer dismissAllPoppedViewControllers];
 }
 
 @end

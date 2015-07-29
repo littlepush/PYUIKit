@@ -41,82 +41,191 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <PYCore/PYCoreMacro.h>
+#import "PYCore.h"
 
-typedef NS_ENUM(NSInteger, PYPopUpAnimationType) {
-    PYPopUpAnimationTypeNone            = 0,        // No animation
-    PYPopUpAnimationTypeJelly           = 1,        // Jelly Popup
-    PYPopUpAnimationTypeSmooth          = 2,        // Smooth Popup
-    PYPopUpAnimationTypeFade            = 3,        // Fade In/Out
-    PYPopUpAnimationTypeSlideFromLeft   = 4,        // Slide In from left
-    PYPopUpAnimationTypeSlideFromRight  = 5,        // Slide In from right
-    PYPopUpAnimationTypeSlideFromBottom = 6,        // Slide in from bottom
-    PYPopUpAnimationTypeSlideFromTop    = 7         // Slide in from top
-};
+// Pop Animation Type
+extern NSString *kPopUpAnimationTypeNone;
+extern NSString *kPopUpAnimationTypeJelly;
+extern NSString *kPopUpAnimationTypeSmooth;
+extern NSString *kPopUpAnimationTypeFade;
+extern NSString *kPopUpAnimationTypeSlideFromLeft;
+extern NSString *kPopUpAnimationTypeSlideFromRight;
+extern NSString *kPopUpAnimationTypeSlideFromBottom;
+extern NSString *kPopUpAnimationTypeSlideFromTop;
 
-typedef NS_ENUM(NSInteger, UIViewControllerPopState) {
-    UIViewControllerPopStateUnknow      = 0,
-    UIViewControllerPopStateWillPop,
-    UIViewControllerPopStatePoppedUp,
-    UIViewControllerPopStateWillDismiss,
-    UIViewControllerPopStateDismissed
-};
+// Pop Animation Option Keys
+extern NSString *kViewControllerPopUpOptionDuration;
+extern NSString *kViewControllerPopUpOptionAnimationType;
+extern NSString *kViewControllerPopUpOptionCenterPoint;
+extern NSString *kViewControllerPopUpOptionMaskColor;
+extern NSString *kViewControllerPopUpOptionMaskAlpha;
+
+/*!
+ @brief the customized pop up animation method
+ */
+typedef void (^PYPopUpAnimationMethod)(UIView *view, float duration, PYActionDone complete);
 
 @interface UIViewController (PopUp)
 
-// Check if current has a pop view and is visiable.
-@property (nonatomic, readonly) BOOL        isPopViewVisiable DEPRECATED_ATTRIBUTE;
+/*!
+ @brief Register The Pop Up animation method
+ @param type The animation type, should be unique id
+ @param popMethod The method block for pop animation
+ @param dismissMethod The method block for dismiss animation
+ */
++ (void)registerAnimationMethodForType:(NSString *)type
+                           popUpMethod:(PYPopUpAnimationMethod)popMethod
+                         dismissMethod:(PYPopUpAnimationMethod)dismissMethod;
 
-// Observe this property to get the notification of child viewcontroller
-// poping state.
-@property (nonatomic, readonly) UIViewControllerPopState        popState;
-
-// Popped Child View Controller
+/*!
+ @brief Top popped child view controller
+ */
 @property (nonatomic, readonly) UIViewController                *poppedViewController;
+
+/*!
+ @brief All popped child view controllers
+ */
+@property (nonatomic, readonly) NSArray                         *poppedChildViewControllers;
 
 // Pop up the view controller with specified animation type.
 // Default animation type is Jelly.
 // Default duration is .3
+/*!
+ @brief Pop up a view controller with default animation type and duration
+ @param controller The controller to be popped.
+ */
 - (void)presentPopViewController:(UIViewController *)controller;
+
+/*!
+ @brief Pop up a view controller with default animation type
+ @param controller The controller to be popped.
+ @param duration Animation duration
+ */
+- (void)presentPopViewController:(UIViewController *)controller
+                        duration:(float)duration;
+
+/*!
+ @brief Pop up a view controller with default animation type
+        and default duration, but has a callback on complete.
+ @param controller The controller to be popped.
+ @param complete Compelete callback block
+ */
 - (void)presentPopViewController:(UIViewController *)controller
                         complete:(PYActionDone)complete;
+
+/*!
+ @brief Pop up a view controller with default animation type
+        and a complete callback block
+ @param controller The controller to be popped.
+ @param duration Animation duration
+ @param complete Compelete callback block
+ */
 - (void)presentPopViewController:(UIViewController *)controller
-                       animation:(PYPopUpAnimationType)type
+                        duration:(float)duration
                         complete:(PYActionDone)complete;
+/*!
+ @brief Pop up a view controller with default duration
+ @param controller The controller to be popped.
+ @param animation The animation type
+ @param complete Compelete callback block
+ */
 - (void)presentPopViewController:(UIViewController *)controller
-                       animation:(PYPopUpAnimationType)type
+                       animation:(NSString *)type
+                        complete:(PYActionDone)complete;
+/*!
+ @brief Pop up a view controller
+ @param controller The controller to be popped.
+ @param duration Animation duration
+ @param animation The animation type
+ @param complete Compelete callback block
+ */
+- (void)presentPopViewController:(UIViewController *)controller
+                        duration:(float)duration
+                       animation:(NSString *)type
+                        complete:(PYActionDone)complete;
+/*!
+ @brief Pop up a view controller with default duration
+ @param controller The controller to be popped.
+ @param animation The animation type
+ @param center the center point of current viewcontroller to present the pop view controller
+ @param complete Compelete callback block
+ */
+- (void)presentPopViewController:(UIViewController *)controller
+                       animation:(NSString *)type
                           center:(CGPoint)center
                         complete:(PYActionDone)complete;
+/*!
+ @brief Pop up a view controller
+ @param controller The controller to be popped.
+ @param duration Animation duration
+ @param animation The animation type
+ @param center the center point of current viewcontroller to present the pop view controller
+ @param complete Compelete callback block
+ */
 - (void)presentPopViewController:(UIViewController *)controller
-                        duration:(CGFloat)duration
-                       animation:(PYPopUpAnimationType)type
+                        duration:(float)duration
+                       animation:(NSString *)type
                           center:(CGPoint)center
                         complete:(PYActionDone)complete;
 
-// Dismiss the view controller, and set if need animation.
-- (void)dismissPoppedViewController:(BOOL)animated;
-- (void)dismissPoppedViewController:(BOOL)animated
-                           complete:(PYActionDone)complete;
-- (void)dismissPoppedViewControllerAnimation:(PYPopUpAnimationType)type
-                                    complete:(PYActionDone)complete;
-// For the container, dismiss the popped
-- (void)dismissChildPoppedView;
+/*!
+ @brief Pop up a view controller with all supported options
+ @param controller The controller to be popped.
+ @param options See kViewControllerPopUpOptions for more details
+ @param complete Compelete callback block
+ */
+- (void)presentPopViewController:(UIViewController *)controller
+                     wihtOptions:(NSDictionary *)options
+                        complete:(PYActionDone)complete;
 
-// Message Callback
+/*!
+ @brief Dismiss self with the param popped.
+ */
+- (void)dismissSelf;
+/*!
+ @brief Dismiss self with the param popped.
+ @param complete Complete callback block
+ */
+- (void)dismissSelfComplete:(PYActionDone)complete;
+
+/*!
+ @brief Dismiss self with the duration popped and specified animation type
+ @param type dismiss animation type
+ @param complete Complete callback block
+ */
+- (void)dismissSelfWithAnimation:(NSString *)type
+                        complete:(PYActionDone)complete;
+
+/*!
+ @brief Dismiss self.
+ @param type dismiss animation type
+ @param duration dismiss animation duration
+ @param complete Complete callback block
+ */
+- (void)dismissSelfWithAnimation:(NSString *)type
+                        duration:(float)duration
+                        complete:(PYActionDone)complete;
+/*!
+ @brief dismiss the top popped view controller
+ */
+- (void)dismissTopPoppedViewController;
+
+/*!
+ @brief loop to dismiss all view controllers
+ */
+- (void)dismissAllPoppedViewControllers;
+
+// Message Callback For Container
 - (void)willPopViewController:(UIViewController *)controller;
 - (void)didPoppedViewController:(UIViewController *)controller;
 - (void)willDismissPopViewController:(UIViewController *)controller;
 - (void)didDismissedPopViewController:(UIViewController *)controller;
 
-@end
-
-@interface UIViewController (Private)
-
-// Display and hide the pop up background mask view.
-- (void)displayMaskViewWithAlpha:(CGFloat)alpha
-                       animation:(PYPopUpAnimationType)type
-             customizeController:(UIViewController *)controller;
-- (void)hideMaskView:(PYPopUpAnimationType)type;
+// Message Callback For popped view controller
+- (void)willBePoppedByParentViewController:(UIViewController *)parent;
+- (void)didBePoppedByParentViewController:(UIViewController *)parent;
+- (void)willDismisseFromParentViewController:(UIViewController *)parent;
+- (void)didDismissFromParentViewController:(UIViewController *)parent;
 
 @end
 

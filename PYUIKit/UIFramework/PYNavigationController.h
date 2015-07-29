@@ -80,7 +80,7 @@ typedef NS_OPTIONS(NSUInteger, UINavigationControllerType) {
     CGFloat                                 _bottomBarHeight;
     
     // If current navigation controller is poped up.
-    BOOL                                    _isPopedUp;
+    BOOL                                    _isPoppedUp;
     BOOL                                    _isBottomBarHidden;
     BOOL                                    _isTopBarHidden;
 }
@@ -109,7 +109,7 @@ typedef NS_OPTIONS(NSUInteger, UINavigationControllerType) {
 @property (nonatomic, assign)   CGFloat                     maxMaskAlphaRate;
 
 // Pop Navigation Controller Properties
-@property (nonatomic, readonly) BOOL                        isPopedUp;
+@property (nonatomic, readonly) BOOL                        isPoppedUp;
 
 // TopBar.
 @property (nonatomic, readonly) UIView                      *topBar;
