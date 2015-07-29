@@ -336,7 +336,7 @@ PYSingletonDefaultImplementation;
                                             duration:(float)duration
                                             complete:(PYActionDone)complete
 {
-    PYNavigationController *_nc = (PYNavigationController *)_rootContainer.popoverPresentationController;
+    PYNavigationController *_nc = (PYNavigationController *)_rootContainer.poppedViewController;
     if ( _nc == nil ) return;
     [_nc dismissSelfWithAnimation:type duration:duration complete:complete];
 }
