@@ -531,14 +531,7 @@ withMultipleSectionDataSource:(NSArray *)datasource
         _cell = [[_cell_class alloc]
                  initWithStyle:UITableViewCellStyleDefault
                  reuseIdentifier:_cellIdentify];
-        [_cell.layer setValue:@(1) forKeyPath:@"com.ipy.cell"];
-    } else {
-        NSNumber *_status = [_cell.layer valueForKey:@"com.ipy.cell"];
-        if ( _status == nil ) {
-            // The cell is created from Storyboard.
-            [_cell.layer setValue:@(1) forKeyPath:@"com.ipy.cell"];
-            _isOnCreateNewCell = YES;
-        }
+        //[_cell.layer setValue:@(1) forKeyPath:@"com.ipy.cell"];
     }
     if ( _isOnCreateNewCell ) {
         if ( [_cell respondsToSelector:@selector(setDeleteEventCallback:)] ) {
