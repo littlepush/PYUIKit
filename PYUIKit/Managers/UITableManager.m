@@ -157,7 +157,7 @@ PYKVO_CHANGED_RESPONSE(_bindTableView, frame);
 @synthesize pullDownContainerView = _pullDownContainerView;
 @synthesize pullUpContainerView = _pullUpContainerView;
 
-@synchronized newCellStyle;
+@synthesize newCellStyle;
 
 - (id)init
 {
@@ -171,7 +171,7 @@ PYKVO_CHANGED_RESPONSE(_bindTableView, frame);
         [_pullDownContainerView setBackgroundColor:[UIColor clearColor]];
         [_pullUpContainerView setBackgroundColor:[UIColor clearColor]];
         
-        self.newCellStyle = UITableViewCellStyle;
+        self.newCellStyle = UITableViewCellStyleDefault;
     }
     return self;
 }
