@@ -96,6 +96,11 @@ typedef NS_OPTIONS(NSUInteger, UITableManagerEvent) {
 @property (nonatomic, readonly) UIView          *pullDownContainerView;
 @property (nonatomic, readonly) UIView          *pullUpContainerView;
 
+/*!
+ @brief Style to create a cell, default is UITableViewCellStyle
+ */
+@property (nonatomic, assign)   UITableViewCellStyle    newCellStyle;
+
 // Multiple Section Table Manager.
 // The Data Source must be a double-level array.
 - (void)bindTableView:(id)tableView

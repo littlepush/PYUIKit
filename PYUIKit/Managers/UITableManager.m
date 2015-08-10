@@ -157,6 +157,8 @@ PYKVO_CHANGED_RESPONSE(_bindTableView, frame);
 @synthesize pullDownContainerView = _pullDownContainerView;
 @synthesize pullUpContainerView = _pullUpContainerView;
 
+@synchronized newCellStyle;
+
 - (id)init
 {
     self = [super init];
@@ -168,6 +170,8 @@ PYKVO_CHANGED_RESPONSE(_bindTableView, frame);
         _pullUpContainerView = [UIView object];
         [_pullDownContainerView setBackgroundColor:[UIColor clearColor]];
         [_pullUpContainerView setBackgroundColor:[UIColor clearColor]];
+        
+        self.newCellStyle = UITableViewCellStyle;
     }
     return self;
 }
@@ -529,7 +533,7 @@ withMultipleSectionDataSource:(NSArray *)datasource
     if ( _cell == nil ) {
         _isOnCreateNewCell = YES;
         _cell = [[_cell_class alloc]
-                 initWithStyle:UITableViewCellStyleDefault
+                 initWithStyle:self.newCellStyle
                  reuseIdentifier:_cellIdentify];
         //[_cell.layer setValue:@(1) forKeyPath:@"com.ipy.cell"];
     }
