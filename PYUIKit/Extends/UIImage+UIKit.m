@@ -461,6 +461,7 @@
     
     CGContextAddPath(_imgCtx, _chkPath);
     CGContextStrokePath(_imgCtx);
+    CGPathRelease(_chkPath);
     
     // Get the check image
     UIImage *_checkImage = UIGraphicsGetImageFromCurrentImageContext();

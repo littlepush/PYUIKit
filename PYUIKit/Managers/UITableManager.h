@@ -59,41 +59,85 @@ typedef NS_OPTIONS(NSUInteger, UITableManagerEvent) {
     UITableManagerEventEndUpdateContent         = PYTableManagerEventUserDefined + 12,
     UITableManagerEventSectionIndexTitle        = PYTableManagerEventUserDefined + 13,
     UITableManagerEventCanDeleteCell            = PYTableManagerEventUserDefined + 14,
+    UITableManagerEventCanInsertCell            = PYTableManagerEventUserDefined + 21,
     UITableManagerEventGetCellClass             = PYTableManagerEventGetCellClass,
     UITableManagerEventGetSectionTitle          = PYTableManagerEventUserDefined + 16,
     UITableManagerEventGetSectionFooter         = PYTableManagerEventUserDefined + 17,
     UITableManagerEventGetSectionFooterTitle    = PYTableManagerEventUserDefined + 18,
     UITableManagerEventGetSectionHeaderTitle    = PYTableManagerEventUserDefined + 19,
     UITableManagerEventGetHeightOfSectionFooter = PYTableManagerEventUserDefined + 20,
+    UITableManagerEventDeletingTitle            = PYTableManagerEventUserDefined + 22
 };
 
 @interface UITableManager : PYActionDispatcher<PYTableManagerProtocol>
 
-// The cell class
+/*!
+ @brief The cell class
+ */
 - (Class)classOfCellAtIndex:(NSIndexPath *)index;
 
-// Set the cell class
+/*!
+ @brief The default cell class
+ */
 @property (nonatomic, assign)   Class           defaultCellClass;
+
+/*!
+ @brief Set different cell class for different section
+ */
 - (void)setCellClass:(Class)cellClass forSection:(NSUInteger)section;
 
-// Enable editing for every cell.
+/*!
+ @brief Enable editing for every cell.
+ */
 @property (nonatomic, assign)   BOOL            enableEditing;
 
-// Is current table view updating is content data source.
+/*!
+ @brief Editing style: Delete
+ */
+@property (nonatomic, assign, setter=setEnableDeleting:) BOOL isEnableDeleting;
+
+/*!
+ @brief Editing style: Insert/Re-Order
+ */
+@property (nonatomic, assign, setter=setEnableInsert:)  BOOL isEanbleInsert;
+
+/*!
+ @brief Is current table view updating its content data source.
+ */
 @property (nonatomic, readonly) BOOL            isUpdating;
 
-// The datasource.
+/*!
+ @brief The datasource.
+ */
 @property (nonatomic, readonly) NSArray         *contentDataSource;
 
-// Get the section count
+/*!
+ @brief Get the section count
+ */
 @property (nonatomic, readonly) NSUInteger      sectionCount;
+
+/*!
+ @brief If show section header view
+ */
 @property (nonatomic, assign)   BOOL            isShowSectionHeader;
+
+/*!
+ @brief If show section footer view
+ */
 @property (nonatomic, assign)   BOOL            isShowSectionFooter;
 
-// If current data source is multiple section
+/*!
+ @brief If current data source is multiple section
+ */
 @property (nonatomic, readonly) BOOL            isMultiSection;
 
+/*!
+ @brief Pull Down Refresh Container View
+ */
 @property (nonatomic, readonly) UIView          *pullDownContainerView;
+/*!
+ @brief Pull Up Load More Container View
+ */
 @property (nonatomic, readonly) UIView          *pullUpContainerView;
 
 /*!
@@ -124,14 +168,24 @@ withMultipleSectionDataSource:(NSArray *)datasource
 - (void)reloadTableDataWithMultipleSectionDataSource:(NSArray *)dataSource
                                    showSectionHeader:(BOOL)showHeader;
 
-// Finish Updating Content
+/*!
+ @brief Has finished updating content, reset the pull down/up container statue
+ */
 - (void)finishUpdateContent;
+
+/*!
+ @brief Did cancel updating content, reset the pull down/up container statue
+ */
 - (void)cancelUpdateContent;
 
-// Append new data to the end of list
+/*!
+ @brief Append new data to the end of list
+ */
 - (void)appendNewDataToEOL:(NSArray *)dataArray scrollToBottom:(BOOL)scrollToBottom;
 
-// Insert new data to the top of list
+/*!
+ @brief Insert new data to the top of list
+ */
 - (void)insertNewDataToTOL:(NSArray *)dataArray scrollToTop:(BOOL)scrollToTop;
 
 @end

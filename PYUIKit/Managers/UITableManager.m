@@ -56,6 +56,8 @@
         BOOL                    _isShowSectionHeader:1; // if show section header.
         BOOL                    _isShowSectionFooter:1; // if show section footer.
         BOOL                    _isEditing:1;           // is current table view in editing mode
+        BOOL                    _canDelete:1;
+        BOOL                    _canInsert:1;
         BOOL                    _isShowSectionIndexTitle:1; // if show section index title
         BOOL                    _isUpdating:1;          // is updating content data source
         BOOL                    _canUpdateContent:1;    // can update the data source
@@ -111,6 +113,14 @@ PYKVO_CHANGED_RESPONSE(_bindTableView, frame);
     [UITableManager registerEvent(UITableManagerEventGetSectionFooterTitle)];
     [UITableManager registerEvent(UITableManagerEventGetSectionHeaderTitle)];
     [UITableManager registerEvent(UITableManagerEventGetHeightOfSectionFooter)];
+    [UITableManager registerEvent(UITableManagerEventCanInsertCell)];
+    [UITableManager registerEvent(UITableManagerEventDeletingTitle)];
+    
+    [PYLocalizedString addStrings:@{
+                                    PYLanguageChineseSimplified:@"删除",
+                                    PYLanguageEnglish:@"Delete"
+                                    }
+                           forKey:@"UITableManager+DeleteTitle"];
 }
 
 - (Class)classOfCellAtIndex:(NSIndexPath *)index
@@ -135,6 +145,20 @@ PYKVO_CHANGED_RESPONSE(_bindTableView, frame);
 - (void)setEnableEditing:(BOOL)enableEditing {
     _flags._isEditing = enableEditing;
     [_bindTableView setEditing:enableEditing];
+}
+
+@dynamic isEnableDeleting;
+- (BOOL)isEnableDeleting { return _flags._canDelete; }
+- (void)setEnableDeleting:(BOOL)enabled
+{
+    _flags._canDelete = enabled;
+}
+
+@dynamic isEanbleInsert;
+- (BOOL)isEanbleInsert { return _flags._canInsert; }
+- (void)setEnableInsert:(BOOL)enabled
+{
+    _flags._canInsert = enabled;
 }
 
 @dynamic isUpdating;
@@ -592,7 +616,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (NSString *)tableView:(UITableView *)tableView
 titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return @"删除";
+    id _cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *_deletingTitle = [self invokeTargetWithEvent:UITableManagerEventDeletingTitle
+                                                    exInfo:_cell
+                                                    exInfo:indexPath];
+    if ( [_deletingTitle length] == 0 ) {
+        _deletingTitle = [PYLocalizedString stringForKey:@"UITableManager+DeleteTitle"];
+    }
+    return _deletingTitle;
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -600,45 +631,64 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id _cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self invokeTargetWithEvent:PYTableManagerEventDeleteCell exInfo:_cell exInfo:indexPath];
-    if ( _flags._isMultipleSection ) {
-        NSMutableArray *_sectionSource =
-        [NSMutableArray arrayWithArray:
-         [_contentDataSource safeObjectAtIndex:indexPath.section]];
-        [_sectionSource removeObjectAtIndex:indexPath.row];
-        [_contentDataSource removeObjectAtIndex:indexPath.section];
-        [_contentDataSource insertObject:_sectionSource atIndex:indexPath.section];
+    
+    if ( editingStyle == UITableViewCellEditingStyleDelete ) {
+        [self invokeTargetWithEvent:PYTableManagerEventDeleteCell exInfo:_cell exInfo:indexPath];
+        if ( _flags._isMultipleSection ) {
+            NSMutableArray *_sectionSource =
+            [NSMutableArray arrayWithArray:
+             [_contentDataSource safeObjectAtIndex:indexPath.section]];
+            [_sectionSource removeObjectAtIndex:indexPath.row];
+            [_contentDataSource removeObjectAtIndex:indexPath.section];
+            [_contentDataSource insertObject:_sectionSource atIndex:indexPath.section];
+        } else {
+            [_contentDataSource removeObjectAtIndex:indexPath.row];
+        }
+        [_bindTableView deleteRowsAtIndexPaths:@[indexPath]
+                              withRowAnimation:UITableViewRowAnimationFade];
     } else {
-        [_contentDataSource removeObjectAtIndex:indexPath.row];
+        // TODO: Reorder the cell
     }
-    [_bindTableView deleteRowsAtIndexPaths:@[indexPath]
-                          withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView
            editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Detemine if it's in editing mode
-    if ( _flags._isEditing ) {
-        return UITableViewCellEditingStyleDelete;
+    UITableViewCellEditingStyle _es = UITableViewCellEditingStyleNone;
+    if ( _flags._canDelete ) {
+        _es |= UITableViewCellEditingStyleDelete;
     }
-    NSNumber *_canDeleteFlag = [self
-                                invokeTargetWithEvent:UITableManagerEventCanDeleteCell
-                                exInfo:indexPath];
-    if ( _canDeleteFlag != nil ) {
-        if ( [_canDeleteFlag boolValue] ) return UITableViewCellEditingStyleDelete;
+    if ( _flags._canInsert ) {
+        _es |= UITableViewCellEditingStyleInsert;
     }
-    return UITableViewCellEditingStyleNone;
+    if ( _es == UITableViewCellEditingStyleNone ) {
+        NSNumber *_canDeleteFlag = [self invokeTargetWithEvent:UITableManagerEventCanDeleteCell
+                                                        exInfo:indexPath];
+        NSNumber *_canInsertFlag = [self invokeTargetWithEvent:UITableManagerEventCanInsertCell
+                                                        exInfo:indexPath];
+        BOOL _cd = (_canDeleteFlag == nil ? NO : [_canDeleteFlag boolValue]);
+        BOOL _ci = (_canInsertFlag == nil ? NO : [_canInsertFlag boolValue]);
+        if ( _cd ) {
+            _es |= UITableViewCellEditingStyleDelete;
+        }
+        if ( _ci ) {
+            _es |= UITableViewCellEditingStyleInsert;
+        }
+    }
+    return _es;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ( (_flags._canDelete || _flags._canInsert) || _flags._isEditing ) return YES;
+    
     NSNumber *_canDeleteFlag = [self invokeTargetWithEvent:UITableManagerEventCanDeleteCell
                                                     exInfo:indexPath];
-    if ( _canDeleteFlag != nil ) {
-        return [_canDeleteFlag boolValue];
-    }
-    return NO;
+    NSNumber *_canInsertFlag = [self invokeTargetWithEvent:UITableManagerEventCanInsertCell
+                                                    exInfo:indexPath];
+    BOOL _cd = (_canDeleteFlag == nil ? NO : [_canDeleteFlag boolValue]);
+    BOOL _ci = (_canInsertFlag == nil ? NO : [_canInsertFlag boolValue]);
+    return (_cd || _ci);
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
