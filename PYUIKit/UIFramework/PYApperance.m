@@ -293,6 +293,7 @@ PYSingletonDefaultImplementation;
         ALog(@"The navigation controller for pop is not a PYNavigationController.");
         return;
     }
+    [_nc.view setBounds:viewController.view.bounds];
     [_rootContainer presentPopViewController:_nc wihtOptions:options complete:^{
         [_nc setPoppedUpState:YES];
         if ( complete ) complete();
