@@ -41,17 +41,55 @@
  */
 
 #import "PYNavViewController.h"
-#import <PYCore/PYCore.h>
+#import "PYCore.h"
+#import "UIColor+PYUIKit.h"
+#import "UIView+PYUIKit.h"
 
 @interface PYNavViewController ()
+{
+    BOOL            _forceDebugMode;
+}
 
 @end
 
 @implementation PYNavViewController
 
+// Debug method
+- (void)__debugForView:(UIView *)debugView {
+    for ( UIView *_v in debugView.subviews ) {
+        [_v.layer setBorderWidth:.5];
+        [_v.layer setBorderColor:[UIColor randomColor].CGColor];
+        [self __debugForView:_v];
+    }
+}
+
+// Visiable Frame
+@dynamic visiableFrame;
+- (CGRect)visiableFrame
+{
+    CGRect _vf = [UIScreen mainScreen].bounds;
+    UINavigationController *_nvc = self.navigationController;
+    if ( self.tabBarController && [[UITabBar appearance] isTranslucent] == NO ) {
+        _vf.size.height -= self.tabBarController.tabBar.frame.size.height;
+        _nvc = self.tabBarController.navigationController;
+    }
+    if ( _nvc && (_nvc.navigationBarHidden == NO) && (_nvc.navigationBar.translucent == NO) ) {
+        CGFloat _sth = ([UIApplication sharedApplication].statusBarHidden ? 0 :
+                        [UIApplication sharedApplication].statusBarFrame.size.height);
+        _vf.size.height -= (_nvc.navigationBar.frame.size.height + _sth);
+    }
+    if ( [_nvc isKindOfClass:[PYNavigationController class]] ) {
+        PYNavigationController *_pnvc = (PYNavigationController *)_nvc;
+        //if ( _pnvc.topBarHidden == NO ) _vf.size.height -= _pnvc.topBarHeight;
+        if ( _pnvc.bottomBarHidden == NO ) _vf.size.height -= _pnvc.bottomBarHeight;
+    }
+    return _vf;
+}
+
 @dynamic navigationController;
 - (PYNavigationController *)navigationController
 {
+    if ( self.tabBarController ) return (PYNavigationController *)self.tabBarController.navigationController;
     return (PYNavigationController *)[super navigationController];
 }
 
@@ -74,6 +112,88 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)userLoginStatueChanged
+{
+    // Refresh the UI if needed.
+}
+
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [self.navigationController pushViewController:viewController animated:animated];
+}
+
+- (void)popViewControllerAnimated:(BOOL)animated
+{
+    [self.navigationController popViewControllerAnimated:animated];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleDefault;
+}
+
+- (void)willMoveToParentViewController:(UIViewController *)parent
+{
+    [super willMoveToParentViewController:parent];
+    if ( parent == nil ) {
+        // Unload
+        [[self.view findFirstResponsder] resignFirstResponder];
+        
+        [NF_CENTER
+         removeObserver:self
+         name:UIApplicationDidChangeStatusBarFrameNotification
+         object:nil];
+        
+        [self viewControllerWillUnload];
+    } else {
+        [NF_CENTER
+         addObserver:self
+         selector:@selector(_actionStatusBarHeightChanged)
+         name:UIApplicationDidChangeStatusBarFrameNotification
+         object:nil];
+        
+        [self viewControllerWillLoad];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self layoutSubviewsInRect:self.visiableFrame];
+}
+
+- (void)forceDebugOn
+{
+    _forceDebugMode = YES;
+    [self __debugForView:self.view];
+}
+
+- (void)viewControllerWillLoad
+{
+    PYLog(@"Will Load view controller: %@", NSStringFromClass([self class]));
+}
+
+- (void)viewControllerWillUnload
+{
+    PYLog(@"Will Unload view controller: %@", NSStringFromClass([self class]));
+}
+
+- (void)_actionStatusBarHeightChanged
+{
+    // Need to reload
+    [self layoutSubviewsInRect:self.visiableFrame];
+}
+
+- (void)layoutSubviewsInRect:(CGRect)visiableRect
+{
+    // Nothing
+}
+
+- (void)contentSizeDidChanged
+{
+    [self layoutSubviewsInRect:self.visiableFrame];
 }
 
 @end

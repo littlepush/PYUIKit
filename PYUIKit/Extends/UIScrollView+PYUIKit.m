@@ -97,7 +97,7 @@
     }
     
     CGRect _scf = self.frame;
-    CGRect _applicationFrame = [UIScreen mainScreen].applicationFrame;
+    CGRect _applicationFrame = [UIScreen mainScreen].bounds;
     
     CGFloat _deltaY = _kbLastFrame.origin.y - _kbEndFrame.origin.y;
     CGFloat _deltaHeight = _kbLastFrame.size.height - _kbEndFrame.size.height;

@@ -47,6 +47,28 @@
 // Override the navigation controller's type.
 @property (nonatomic, readonly) PYNavigationController      *navigationController;
 
+// The visiable content frame
+@property (nonatomic, readonly) CGRect      visiableFrame;
+
+// Callback for user status changed.
+- (void)userLoginStatueChanged;
+
+// According to [willMoveToParentViewController], this two
+// methods will be invoked.
+- (void)viewControllerWillLoad;
+- (void)viewControllerWillUnload;
+
+// Force to trun debug mode
+- (void)forceDebugOn;
+
+// After load the view or visiable frame has been changed,
+// will invoke this method.
+- (void)layoutSubviewsInRect:(CGRect)visiableRect;
+
+// Check if contains tab controller.
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
+- (void)popViewControllerAnimated:(BOOL)animated;
+
 @end
 
 // @littlepush
