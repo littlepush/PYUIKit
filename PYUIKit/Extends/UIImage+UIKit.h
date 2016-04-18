@@ -104,6 +104,14 @@
                      lineWidth:(CGFloat)lineWidth
                        padding:(CGFloat)padding;
 
+// Draw an add(+) within specified size
++ (UIImage *)addIconWithSize:(CGSize)imgSize;
++ (UIImage *)addIconWithSize:(CGSize)imgSize
+             backgroundColor:(UIColor *)bkgClr
+                   iconColor:(UIColor *)icnClr
+                   lineWidth:(CGFloat)lineWidth
+                     padding:(CGFloat)padding;
+
 - (UIImage *)imageWithCornerRadius:(CGFloat)cornerRadius;
 
 @end
