@@ -43,6 +43,8 @@
 #ifndef PYUIKit_PYUIKitMacro_h
 #define PYUIKit_PYUIKitMacro_h
 
+#import <PYCore/PYCore.h>
+
 #define PYIsRetina                                                  \
     ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]	\
     && [[UIScreen mainScreen] scale] == 2.0)

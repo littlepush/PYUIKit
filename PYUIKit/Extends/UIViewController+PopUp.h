@@ -41,7 +41,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "PYCore.h"
+#import <PYCore/PYCore.h>
 
 // Pop Animation Type
 extern NSString *kPopUpAnimationTypeNone;
