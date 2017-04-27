@@ -126,7 +126,7 @@ typedef void (^PYPopUpAnimationMethod)(UIView *view, float duration, PYActionDon
 /*!
  @brief Pop up a view controller with default duration
  @param controller The controller to be popped.
- @param animation The animation type
+ @param type The animation type
  @param complete Compelete callback block
  */
 - (void)presentPopViewController:(UIViewController *)controller
@@ -136,7 +136,7 @@ typedef void (^PYPopUpAnimationMethod)(UIView *view, float duration, PYActionDon
  @brief Pop up a view controller
  @param controller The controller to be popped.
  @param duration Animation duration
- @param animation The animation type
+ @param type The animation type
  @param complete Compelete callback block
  */
 - (void)presentPopViewController:(UIViewController *)controller
@@ -146,7 +146,7 @@ typedef void (^PYPopUpAnimationMethod)(UIView *view, float duration, PYActionDon
 /*!
  @brief Pop up a view controller with default duration
  @param controller The controller to be popped.
- @param animation The animation type
+ @param type The animation type
  @param center the center point of current viewcontroller to present the pop view controller
  @param complete Compelete callback block
  */
@@ -158,7 +158,7 @@ typedef void (^PYPopUpAnimationMethod)(UIView *view, float duration, PYActionDon
  @brief Pop up a view controller
  @param controller The controller to be popped.
  @param duration Animation duration
- @param animation The animation type
+ @param type The animation type
  @param center the center point of current viewcontroller to present the pop view controller
  @param complete Compelete callback block
  */
