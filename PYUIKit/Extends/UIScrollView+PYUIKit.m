@@ -122,7 +122,7 @@
         NSValue *_resetKbFrame = [NSValue valueWithCGRect:CGRectZero];
         [self.layer setValue:_resetKbFrame forKey:@"__k__keyboard_lastframe"];
         return;
-    } else if ( _kbEndFrame.origin.y == (_scf.origin.y + _scf.size.height) ) {
+    } else if ( _deltaHeight == 0.f ) { // Just change keyboard type but not change the height
         // do nothing
     } else {
         // Show

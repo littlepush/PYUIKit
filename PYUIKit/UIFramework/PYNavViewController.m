@@ -141,11 +141,6 @@
         // Unload
         [[self.view findFirstResponsder] resignFirstResponder];
         
-        [NF_CENTER
-         removeObserver:self
-         name:UIApplicationDidChangeStatusBarFrameNotification
-         object:nil];
-        
         [self viewControllerWillUnload];
     } else {
         [NF_CENTER
@@ -155,6 +150,22 @@
          object:nil];
         
         [self viewControllerWillLoad];
+    }
+}
+
+- (void)didMoveToParentViewController:(UIViewController *)parent
+{
+    [super didMoveToParentViewController:parent];
+    if ( parent == nil ) {
+        // Unload
+        [NF_CENTER
+         removeObserver:self
+         name:UIApplicationDidChangeStatusBarFrameNotification
+         object:nil];
+        
+        [self viewControllerDidUnload];
+    } else {
+        [self viewControllerDidLoad];
     }
 }
 
@@ -178,6 +189,16 @@
 - (void)viewControllerWillUnload
 {
     PYLog(@"Will Unload view controller: %@", NSStringFromClass([self class]));
+}
+
+- (void)viewControllerDidLoad
+{
+    PYLog(@"Did Load view controller: %@", NSStringFromClass([self class]));
+}
+
+- (void)viewControllerDidUnload
+{
+    PYLog(@"Did Unload view controller: %@", NSStringFromClass([self class]));
 }
 
 - (void)_actionStatusBarHeightChanged

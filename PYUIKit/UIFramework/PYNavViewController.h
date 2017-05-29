@@ -56,7 +56,9 @@
 // According to [willMoveToParentViewController], this two
 // methods will be invoked.
 - (void)viewControllerWillLoad;
+- (void)viewControllerDidLoad;
 - (void)viewControllerWillUnload;
+- (void)viewControllerDidUnload;
 
 // Force to trun debug mode
 - (void)forceDebugOn;
