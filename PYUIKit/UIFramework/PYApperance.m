@@ -282,6 +282,32 @@ PYSingletonDefaultImplementation;
     }
 }
 
+// Reload all loaded view controllers' content
+- (void)reloadAllContent
+{
+    SEL _loadSel = NSSelectorFromString(@"loadContentInViewController");
+    for ( PYNavigationController *_nv in _mainViewControllers ) {
+        for ( UIViewController *_vc in _nv.viewControllers ) {
+            [_vc tryPerformSelector:_loadSel];
+        }
+    }
+    for ( PYNavigationController *_nv in _leftViewControllers ) {
+        for ( UIViewController *_vc in _nv.viewControllers ) {
+            [_vc tryPerformSelector:_loadSel];
+        }
+    }
+    for ( PYNavigationController *_nv in _rightViewControllers ) {
+        for ( UIViewController *_vc in _nv.viewControllers ) {
+            [_vc tryPerformSelector:_loadSel];
+        }
+    }
+    for ( PYNavigationController *_nv in _rootContainer.poppedChildViewControllers ) {
+        for ( UIViewController *_vc in _nv.viewControllers ) {
+            [_vc tryPerformSelector:_loadSel];
+        }
+    }
+}
+
 // Present pop view controller.
 - (void)presentPopViewController:(UIViewController *)viewController
                          options:(NSDictionary *)options

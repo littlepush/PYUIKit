@@ -63,6 +63,10 @@
 // Force to trun debug mode
 - (void)forceDebugOn;
 
+// When the view is ready to display the content or system config has been
+// changed, or [PYApperance reloadAllContent] has been invoked
+- (void)loadContentInViewController;
+
 // After load the view or visiable frame has been changed,
 // will invoke this method.
 - (void)layoutSubviewsInRect:(CGRect)visiableRect;

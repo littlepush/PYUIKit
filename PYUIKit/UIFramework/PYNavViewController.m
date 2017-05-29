@@ -106,6 +106,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self loadContentInViewController];
 }
 
 - (void)didReceiveMemoryWarning
@@ -199,6 +200,11 @@
 - (void)viewControllerDidUnload
 {
     PYLog(@"Did Unload view controller: %@", NSStringFromClass([self class]));
+}
+
+- (void)loadContentInViewController
+{
+    PYLog(@"Load Content of View Controller: %@", NSStringFromClass([self class]));
 }
 
 - (void)_actionStatusBarHeightChanged

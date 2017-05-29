@@ -95,6 +95,9 @@
 // Get current visiable view controller.
 - (UIViewController *)visiableController;
 
+// Reload all loaded view controllers' content
+- (void)reloadAllContent;
+
 // Present pop view controller.
 - (void)presentPopViewController:(UIViewController *)viewController
                          options:(NSDictionary *)options
