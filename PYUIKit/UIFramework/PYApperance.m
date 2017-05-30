@@ -397,6 +397,11 @@ PYSingletonDefaultImplementation;
         _vc = _tbC.selectedViewController;
     }
     if ( _vc == self ) return nil;
+    UIViewController *_superVc = _vc.parentViewController;
+    while ( _superVc != nil && _superVc != self ) {
+        _superVc = _superVc.parentViewController;
+    }
+    if ( _superVc == nil ) return nil;
     return _vc;
 }
 
