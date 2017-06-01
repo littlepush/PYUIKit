@@ -701,7 +701,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ( _flags._isUpdating == NO ) {
         if ( scrollView.contentOffset.y < 0 ) { // Will display the pull-down refresh view
-            if ( scrollView.contentOffset.y < -44 ) {
+            if ( (scrollView.contentOffset.y + scrollView.contentInset.top) < -44 ) {
                 // Show: "Release to refresh"
                 if ( _flags._canUpdateContent == NO ) {
                     _flags._canUpdateContent = YES;
@@ -714,8 +714,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
                     [self invokeTargetWithEvent:UITableManagerEventWillGiveUpRefreshList];
                 }
             }
-        } else if ( scrollView.contentOffset.y > (scrollView.contentSize.height - scrollView.frame.size.height) ) {
-            if ( scrollView.contentOffset.y > (scrollView.contentSize.height + 44 - scrollView.frame.size.height) ) {
+        } else if ( (scrollView.contentOffset.y + scrollView.contentInset.bottom) >
+                   (scrollView.contentSize.height - scrollView.frame.size.height) ) {
+            if ( (scrollView.contentOffset.y + scrollView.contentInset.bottom) >
+                (scrollView.contentSize.height + 44 - scrollView.frame.size.height) ) {
                 // Show: "Release to load more"
                 if ( _flags._canUpdateContent == NO ) {
                     _flags._canUpdateContent = YES;
