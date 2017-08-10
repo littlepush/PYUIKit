@@ -67,7 +67,11 @@
 @dynamic visiableFrame;
 - (CGRect)visiableFrame
 {
-    CGRect _vf = [UIScreen mainScreen].bounds;
+    CGRect _vf = [UIScreen mainScreen].applicationFrame;
+    if ( _vf.origin.y != 0 ) {
+        _vf.size.height += _vf.origin.y;
+        _vf.origin.y = 0;
+    }
     UINavigationController *_nvc = self.navigationController;
     if ( self.tabBarController && [[UITabBar appearance] isTranslucent] == NO ) {
         _vf.size.height -= self.tabBarController.tabBar.frame.size.height;
