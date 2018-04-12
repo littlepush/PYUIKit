@@ -590,6 +590,7 @@
     CGFloat _th = (_topBarView.alpha > 0) ? _topBarHeight : 0;
     CGFloat _bh = (_bottomBarView.alpha > 0) ? _bottomBarHeight : 0;
     [_containerView setFrame:CGRectMake(0, _th, size.width, size.height - _th - _bh)];
+    [_maskView setFrame:_containerView.frame];
 }
 
 @end
