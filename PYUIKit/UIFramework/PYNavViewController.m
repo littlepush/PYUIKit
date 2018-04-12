@@ -227,6 +227,12 @@
     [self layoutSubviewsInRect:self.visiableFrame];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self layoutSubviewsInRect:self.visiableFrame];
+}
+
 @end
 
 // @littlepush

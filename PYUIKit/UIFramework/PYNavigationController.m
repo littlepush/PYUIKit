@@ -583,6 +583,15 @@
     [self.visibleViewController didDismissedPopViewController:controller];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self.view setFrame:CGRectMake(0, 0, size.width, size.height)];
+    CGFloat _th = (_topBarView.alpha > 0) ? _topBarHeight : 0;
+    CGFloat _bh = (_bottomBarView.alpha > 0) ? _bottomBarHeight : 0;
+    [_containerView setFrame:CGRectMake(0, _th, size.width, size.height - _th - _bh)];
+}
+
 @end
 
 @implementation UIViewController (PYNavigationController)
