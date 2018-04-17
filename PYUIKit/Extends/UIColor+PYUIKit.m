@@ -70,28 +70,52 @@
 
 + (UIColor *)colorWithString:(NSString *)clrString alpha:(CGFloat)alpha
 {
-    NSArray *_components = [clrString componentsSeparatedByString:@"^"];
-    NSString *_c = clrString;
-    if ( [_components count] == 2 ) {
-        _c = [_components objectAtIndex:0];
-        NSString *_alphaString = [_components lastObject];
-        if ( [_alphaString rangeOfString:@"."].location == 0 ) {
-            _alphaString = [@"0" stringByAppendingString:_alphaString];
+    if ( [[clrString substringToIndex:3] isEqualToString:@"rgb"] ) {
+        PYColorInfo _ci = (PYColorInfo){0, 0, 0, alpha};
+        if ( [[clrString substringToIndex:4] isEqualToString:@"rgba"] ) {
+            // rgba(r,g,b,a)
+            NSString *_clrs = [clrString substringWithRange:NSMakeRange(5, clrString.length - 6)];
+            NSArray *_cp = [_clrs componentsSeparatedByString:@","];
+            _ci.red = [_cp[0] floatValue] / 255.f;
+            _ci.green = [_cp[1] floatValue] / 255.f;
+            _ci.blue = [_cp[2] floatValue] / 255.f;
+            _ci.alpha = [_cp[3] floatValue];
+        } else {
+            // rgb(r,g,b)
+            NSString *_clrs = [clrString substringWithRange:NSMakeRange(4, clrString.length - 5)];
+            NSArray *_cp = [_clrs componentsSeparatedByString:@","];
+            _ci.red = [_cp[0] floatValue] / 255.f;
+            _ci.green = [_cp[1] floatValue] / 255.f;
+            _ci.blue = [_cp[2] floatValue] / 255.f;
         }
-        alpha = [_alphaString floatValue];
+        return RGBACOLOR(_ci.red, _ci.green, _ci.blue, _ci.alpha);
+    } else {
+        NSArray *_components = [clrString componentsSeparatedByString:@"^"];
+        NSString *_c = clrString;
+        if ( [_components count] == 2 ) {
+            _c = [_components objectAtIndex:0];
+            NSString *_alphaString = [_components lastObject];
+            if ( [_alphaString rangeOfString:@"."].location == 0 ) {
+                _alphaString = [@"0" stringByAppendingString:_alphaString];
+            }
+            alpha = [_alphaString floatValue];
+        }
+        if ( [_c length] == 7 ) {
+            _c = [_c substringFromIndex:1];
+        }
+        if ( [_c length] != 6 ) {
+            return [UIColor clearColor];
+        }
+        
+        int r, g, b;
+        sscanf(_c.UTF8String, "%02x%02x%02x", &r, &g, &b);
+        return RGBACOLOR(r, g, b, alpha);
     }
-    if ( [_c length] == 7 ) {
-        _c = [_c substringFromIndex:1];
-    }
-    if ( [_c length] != 6 ) {
-        return [UIColor clearColor];
-    }
-    
-    int r, g, b;
-    sscanf(_c.UTF8String, "%02x%02x%02x", &r, &g, &b);
-    return RGBACOLOR(r, g, b, alpha);
 }
-
++ (UIColor *)colorWithColorInfo:(PYColorInfo)clrInfo
+{
+    return RGBACOLOR(clrInfo.red, clrInfo.green, clrInfo.blue, clrInfo.alpha);
+}
 @dynamic colorInfo;
 - (PYColorInfo)colorInfo
 {

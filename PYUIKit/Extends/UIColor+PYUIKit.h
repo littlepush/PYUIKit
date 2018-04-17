@@ -67,6 +67,7 @@ typedef struct tagColorInfo {
 // #FFFFFF^.5 means #FFFFFF with .5 alpha
 + (UIColor *)colorWithString:(NSString *)clrString;
 + (UIColor *)colorWithString:(NSString *)clrString alpha:(CGFloat)alpha;
++ (UIColor *)colorWithColorInfo:(PYColorInfo)clrInfo;
 
 // Get the color info
 @property (nonatomic, readonly) PYColorInfo         colorInfo;
