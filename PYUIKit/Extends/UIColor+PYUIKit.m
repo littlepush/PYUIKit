@@ -88,7 +88,7 @@
             _ci.green = [_cp[1] floatValue] / 255.f;
             _ci.blue = [_cp[2] floatValue] / 255.f;
         }
-        return RGBACOLOR(_ci.red, _ci.green, _ci.blue, _ci.alpha);
+        return [UIColor colorWithRed:_ci.red green:_ci.green blue:_ci.blue alpha:_ci.alpha];
     } else {
         NSArray *_components = [clrString componentsSeparatedByString:@"^"];
         NSString *_c = clrString;
@@ -114,7 +114,7 @@
 }
 + (UIColor *)colorWithColorInfo:(PYColorInfo)clrInfo
 {
-    return RGBACOLOR(clrInfo.red, clrInfo.green, clrInfo.blue, clrInfo.alpha);
+    return [UIColor colorWithRed:clrInfo.red green:clrInfo.green blue:clrInfo.blue alpha:clrInfo.alpha];
 }
 @dynamic colorInfo;
 - (PYColorInfo)colorInfo
