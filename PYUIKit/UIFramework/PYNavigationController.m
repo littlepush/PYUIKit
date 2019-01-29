@@ -243,9 +243,9 @@
         [[PYApperance sharedApperance]
          _keyViewController:self
          changedTransform:CGAffineTransformIdentity];
-        [_maskView setAlpha:0.f];
+        [self->_maskView setAlpha:0.f];
     } completion:^(BOOL finished) {
-        [_maskView removeFromSuperview];
+        [self->_maskView removeFromSuperview];
         if ( done ) done();
     }];
 }
